@@ -2,7 +2,10 @@
 import 'dotenv/config.js';
 // import express
 import express from 'express';
-
+// import client.js so its read when the server will start
+import "./db/client.js";
+// import usersRouter
+import usersRouter from './routes/usersRouter.js';
 // call express function in an variable called "app"
 const app = express();
 // let server know which port to use
