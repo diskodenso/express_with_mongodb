@@ -13,4 +13,4 @@ const userSchema = new Schema({
 });
 
 // use model method to create a collection called UserS
-export default model.("User", userSchema);
+export default model("User", userSchema);
