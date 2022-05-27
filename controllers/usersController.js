@@ -8,9 +8,16 @@ export const getAllUsers = (req, res) => {
 export const getSingleUser = (req, res) => {
     
 };
-// ----- create new Users Controller ------ //
-export const createNewUser = (req, res) => {
-    
+// ----- create new Users Controller ------ // use async await
+export const createNewUser = async (req, res) => {
+    try {
+        // use .create function to create a new document in a collection
+        const { first_name, last_name, email } = req.body;
+        const newUser = await User.create({ first_name, last_name, email });
+        console.log(newUser);
+    } catch(err) {
+        res.status(500).json(err)
+    }
 };
 // ----- delete Users Controller ------ //
 export const deleteOneUser = (req, res) => {
