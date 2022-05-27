@@ -7,7 +7,7 @@ const { Schema, model } = mongoose;
 // we create a schema to tell how every user document should look like
 const userSchema = new Schema({
     first_name: String,
-    last_name: Strings,
+    last_name: String,
     // required means the field is becoming a mandatory field to fill in
     email: {type: String, required: true}
 });
