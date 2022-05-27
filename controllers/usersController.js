@@ -5,7 +5,11 @@ export const getAllUsers = async (req, res) => {
     try {
         // .find is mongoose query method
         const allUsers = await User.find();
+        if (allUsers) {
         res.status(200).json({ users: allUsers });
+        } else {
+        res.status(404).send("There is no Users");
+        }
     } catch (err) {
         res.status(500).json(err);
 }
@@ -14,13 +18,13 @@ export const getAllUsers = async (req, res) => {
 // ----- get single User Controller ------ //
 export const getSingleUser = async (req, res) => {
     try {
-            const { id } = req.params;
+        const { id } = req.params;
         const findUser = await User.findById(id);
-        if (findUser.length != 0) {
-                        res.status(200).json(findUser);
+        if (findUser.length == 0) {
+        res.status(404).send("There is no User matching this ID");
        } else {
-            res.status(404).send("There is no User matching this ID");
-       }
+        res.status(200).json(findUser);
+        }
     } catch (err) {
         res.status(500).json(err)
     }
@@ -56,7 +60,11 @@ export const updateOneUser = async (req, res) => {
         const { first_name, last_name, email } = req.body;
         // use the findByIdAndUpdate method pass id to find body to update
         // new option is a boolean - true or false - true to return the modified document!!! by default false
-        const updateUser = await User.findByIdAndUpdate(id, { fist_name, last_name, email }{ new: true });
+        const updateUser = await User.findByIdAndUpdate(
+            id,
+            { fist_name, last_name, email },
+            { new: true }
+        );
         res.status(200).json(updateUser);
     } catch (err) {
         res.status(500).json(err);
