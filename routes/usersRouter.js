@@ -1,6 +1,6 @@
 // import Router 
 import { Router } from 'express';
-import { createNewUser, getAllUsers } from '../controllers/usersController.js';
+import { createNewUser, getAllUsers, getSingleUser, deleteOneUser, updateOneUser } from '../controllers/usersController.js';
 // call router function
 const usersRouter = Router();
 // create different routes on "main entries route"
